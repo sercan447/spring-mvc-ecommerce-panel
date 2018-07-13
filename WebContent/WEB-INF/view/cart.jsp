@@ -13,13 +13,13 @@
             </div>
         </section>
 
-        <section class="container" ng-app="app">
-            <div ng-controller = "cartCtrl" ng-init="initCartId('${cartId}')">
+        <section class="container" >
+            <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
             <div>
                 <a class="btn btn-danger pull-left" ng-click="clearCart()"><span
                         class="glyphicon glyphicon-remove-sign"></span>Clear Cart</a>
             </div>
-
+			
             <table class="table table-hover">
                 <tr>
                     <th>Product</th>
@@ -28,7 +28,8 @@
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
-                <tr ng-repeat = "item in cart.cartItems">
+                <tr ng-repeat="item in cart">
+               	
                     <td>{{item.product.productName}}</td>
                     <td>{{item.product.productPrice}}</td>
                     <td>{{item.quantity}}</td>

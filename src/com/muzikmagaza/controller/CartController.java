@@ -14,6 +14,7 @@ import com.muzikmagaza.dao.ProductDao;
 import com.muzikmagaza.model.Cart;
 import com.muzikmagaza.model.Customer;
 import com.muzikmagaza.model.Product;
+import com.muzikmagaza.service.CartService;
 import com.muzikmagaza.service.CustomerService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +27,17 @@ public class CartController {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private CartService cartService;
+	
 	@RequestMapping
-	public String getCart(@AuthenticationPrincipal User activeUser) {
+	public String getCart(@AuthenticationPrincipal User activeUser,Model model) {
 		
 		Customer customer = customerService.getCustomerByUsername(activeUser.getUsername());
 		int cartId = customer.getCart().getCartId();
+		
+		//Cart cart = customer.getCart();
+		//model.addAttribute("cart",cart);
 		
 		return "redirect:/customer/cart/"+cartId;
 	}	
@@ -38,6 +45,10 @@ public class CartController {
 	@RequestMapping("/{cartId}")
 	public String getCartRedirect(@PathVariable(value="cartId") int cartId,Model model) {
 		model.addAttribute("cartId",cartId);
+		
+		//Cart cart = cartService.getCartById(cartId);
+		//model.addAttribute("cart",cart);
+		
 		
 		return "cart";
 	}

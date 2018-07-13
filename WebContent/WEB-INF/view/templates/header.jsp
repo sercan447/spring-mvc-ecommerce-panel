@@ -28,7 +28,7 @@
 </head>
 <!-- NAVBAR
 ================================================== -->
-<body >
+<body ng-app="app" >
 <div class="navbar-wrapper">
     <div class="container">
 
